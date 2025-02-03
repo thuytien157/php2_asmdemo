@@ -1,0 +1,102 @@
+
+.gh{
+    padding-left: 2px;
+}
+.menu-1{
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  left: 0%;
+}
+.small-img{
+    height: 300px;
+    object-fit: cover;
+}
+
+.hover-overlay {
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+.dropdown-menu {
+  display: none;
+}
+
+.nav-item.dropdown:hover .dropdown-menu {
+  display: block;
+}
+
+.position-relative:hover .hover-overlay {
+    opacity: 1;
+}
+
+.bst .container-xxl .card {
+    width: 100%;
+}
+
+.help{
+    width: 320px;
+}
+.link{
+    font-size: 12px;
+}
+
+.thumb-img {
+    width: 200px;
+    height: 80px;
+    object-fit: cover;
+  }
+
+  .main-image {
+    width: 100%;
+    object-fit: cover;
+  }
+  .chinhsach .card-body {
+    background-color: #f9f9f9;
+    padding: 30px;
+  }
+
+  .chinhsach .list-unstyled li {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .chinhsach .nav-tabs .nav-link {
+    font-weight: bold;
+    color: #333;
+    border-radius: 0;
+  }
+  .color-btn.active {
+    border-color: #24aeb1;
+    box-shadow: 0 0 10px #869494;
+}
+  .chinhsach .nav-tabs .nav-link.active {
+    background-color: #f4f4f4;
+    color: #000;
+  }
+
+  .chinhsach .row {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .chinhsach .col-md-4 {
+    margin-bottom: 20px;
+  }
+  .anh{
+    width: 50px;
+  }
+@media (max-width: 992px) {
+    .bst .img-fluid {
+        display: none; 
+    }
+}
+.my-custom-scrollbar {
+  position: relative;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.table-wrapper-scroll-y {
+  display: block;
+}
+
