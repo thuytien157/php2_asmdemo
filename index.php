@@ -29,6 +29,8 @@ $route->add("/product/detail/{id}", ["controller" => "product", "action" => "det
 $route->add("/addToCart", ["controller" => "cart", "action" => "addToCart"]);
 $route->add("/cart", ["controller" => "cart", "action" => "index"]);
 $route->add("/cartRemove/{product_id}", ["controller" => "cart", "action" => "removeFromCart"]);
+$route->add("/cart/updateQuantity/{product_id}/increase", ["controller" => "cart", "action" => "increase"]);
+$route->add("/cart/updateQuantity/{product_id}/decrease", ["controller" => "cart", "action" => "decrease"]);
 $route->add("/user/register", ["controller" => "user", "action" => "register"]);
 $route->add("/user/login", ["controller" => "user", "action" => "login"]);
 $route->add("/user/logout", ["controller" => "user", "action" => "logout"]);

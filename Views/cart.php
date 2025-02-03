@@ -15,31 +15,30 @@
           <label class="form-check-label" for="selectAll">Chọn tất cả sản phẩm</label>
         </div>
 
-        <div class="list-group" id="cart">
-          <?php foreach($cart as $item):?>
-           <div class="list-group-item d-flex justify-content-between align-items-center">
+<div class="list-group" id="cart">
+    <?php foreach($cart as $item):?>
+        <div class="list-group-item d-flex justify-content-between align-items-center">
             <div class="d-flex align-items-center">
-              <input class="form-check-input me-3" type="checkbox" checked>
-              <img src="/php2/ASMC/public/img/<?=$item['image']?>" alt="Áo khoác" class="img-thumbnail" style="width: 100px;">
-              <div class="ms-3">
-                <p class="mb-1 fw-bold"><?=$item['name']?></p>
-                <!-- <p class="text-muted">Kích thước: M</p> -->
-                 <?=$item['id']?>
-                <p class="text-muted">Số lượng: <?=$item['quantity']?></p>
-              </div>
+                <input class="form-check-input me-3" type="checkbox" checked>
+                <img src="/php2/ASMC/public/img/products/<?=$item['image']?>" alt="Sản phẩm" class="img-thumbnail" style="width: 100px;">
+                <div class="ms-3">
+                    <p class="mb-1 fw-bold"><?=$item['name']?></p>
+                    <p class="text-muted">Số lượng: <?=$item['quantity']?></p>
+                </div>
             </div>
             <div class="text-center">
-              <p class="fw-bold"><?=$item['price']?><sup class="fw-bold">đ</sup></p>
-              <div class="input-group input-group-sm">
-                <button class="btn btn-outline-secondary" type="button">-</button>
-                <input type="number" class="form-control text-center" value="1" min="1" readonly>
-                <button class="btn btn-outline-secondary" type="button">+</button>
-              </div>
+                <p class="fw-bold"><?=$item['price']?><sup class="fw-bold">đ</sup></p>
+                <div class="input-group input-group-sm">
+                    <button class="btn btn-outline-secondary btn-decrease" type="button" data-id="<?= $item['id'] ?>">-</button>
+                    <input type="number" id="quantity-<?= $item['id'] ?>" class="form-control text-center quantity-input" value="<?= $item['quantity'] ?>" min="1" readonly>
+                    <button class="btn btn-outline-secondary btn-increase" type="button" data-id="<?= $item['id'] ?>">+</button>
+                </div>
                 <a class="btn btn-danger btn-sm mt-2" href="php2/ASMC/cartRemove/<?=$item['id']?>">Xoá</a>
-              </div>
-          </div> 
-          <?php endforeach?>
-        </div>
+            </div>
+        </div> 
+    <?php endforeach?>
+</div>
+
       </div>
 
       <!-- Thanh toán -->
@@ -79,4 +78,4 @@
               </div>
           </div>
       </div>
-      <script src="/php2/ASMC/public/js/removeCart.js"></script>
+      <script src="/php2/ASMC/public/js/updateQuantity.js"></script>

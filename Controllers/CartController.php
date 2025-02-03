@@ -4,7 +4,6 @@ include_once 'BaseController.php';
 class CartController extends BaseController {
     public function __construct() {
         parent::__construct();
-
     }
 
     public function index() {
@@ -19,12 +18,12 @@ class CartController extends BaseController {
             $product_price = $_POST['product_price'];
             $quantity = $_POST['quantity'];
             $image = $_POST['product_image'];
-        
+
             // Kiểm tra nếu giỏ hàng chưa được tạo
             if (!isset($_SESSION['cart'])) {
                 $_SESSION['cart'] = [];
             }
-        
+
             $found = false;
             foreach ($_SESSION['cart'] as &$item) { 
                 if ($item['id'] === $product_id) {
@@ -33,7 +32,7 @@ class CartController extends BaseController {
                     break;
                 }
             }
-        
+
             if (!$found) {
                 $_SESSION['cart'][] = [
                     'id' => $product_id,
@@ -41,34 +40,64 @@ class CartController extends BaseController {
                     'price' => $product_price,
                     'quantity' => $quantity, 
                     'image' => $image 
-
                 ];
             }
-            // unset($_SESSION['cart']);
-            //$_SESSION['success'] = 'Sản phẩm đã được thêm vào giỏ hàng thành công!';
-            // echo "<pre>";
-            // var_dump($_SESSION['cart']);
-            // echo "<pre>";
-            
-            header('location: php2/ASMC/cart');
+
+            header('Location: /php2/ASMC/cart');
             exit;
         }
-        
     }
 
     public function removeFromCart($product_id) {
-        if (isset($product_id)) {
+        if (isset($_SESSION['cart'])) {
             foreach ($_SESSION['cart'] as $key => $item) {
                 if ($item['id'] == $product_id) {
-                    unset($_SESSION['cart'][$key]); 
-                    header('location: /php2/ASMC/cart');
+                    unset($_SESSION['cart'][$key]);
+                    header('Location: /php2/ASMC/cart');
                     exit;
                 }
             }
         }
-
     }
-        
+
+    public function increase($product_id) {
+        if (!isset($_SESSION['cart'])) {
+            $_SESSION['cart'] = [];
+        }
+    
+        $found = false;
+        foreach ($_SESSION['cart'] as &$item) {
+            if ($item['id'] == $product_id) {
+                $item['quantity']++;
+                $found = true;
+                break;
+            }
+        }
+    
+        if (!$found) {
+            $_SESSION['cart'][] = [
+                'id' => $product_id,
+                'quantity' => 1, 
+            ];
+        }
+    
+        header('Location: /php2/ASMC/cart');
+        exit;
+    }
+    
+    public function decrease($product_id) {
+        if (isset($_SESSION['cart'])) {
+            foreach ($_SESSION['cart'] as &$item) {
+                if ($item['id'] == $product_id && $item['quantity'] > 1) {
+                    $item['quantity']--;
+                    break;
+                }
+            }
+        }
+    
+        header('Location: /php2/ASMC/cart');
+        exit;
+    }
     
 }
 ?>
