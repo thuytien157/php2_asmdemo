@@ -51,21 +51,16 @@
                             <?php endforeach; ?>
                         </div>
                         <form action="/php2/ASMC/addToCart" method="POST" id="add-to-cart-form">
-                        <input type="hidden" name="id" value="<?=$product['product_id']?>">
-                        <input type="hidden" name="product_name" value="<?=$product['name']?>">
-                        <input type="hidden" name="product_price" value="<?=$finalPrice?>">
-
-                        <input type="hidden" name="product_image" value="<?=$images[0]?>?>">
-                        <input type="number" name="quantity" value="1" min="1" class="form-control w-25" id="quantity">
-                        
-                        <!-- Thông báo lỗi nếu chưa chọn số lượng -->
-                        <div id="error-message" class="text-danger mt-2" style="display: none;">Vui lòng nhập số lượng.</div>
-                        
-                        <div class="d-flex gap-2 mt-3">
-                            <button class="btn btn-dark fs-6 fw-bold pe-5 ps-5 pt-3 pb-3" name="addToCart" type="submit" id="add-to-cart-btn">Thêm vào giỏ hàng</button>
-                            <button class="btn btn-danger fs-6 fw-bold pe-5 ps-5 pt-3 pb-3" type="button" onclick="window.location.href='/php2/ASM/checkout'">Mua ngay</button>
-                        </div>
-                    </form>
+                            <input type="hidden" name="id" value="<?=$product['product_id']?>">
+                            <input type="hidden" name="product_name" value="<?=$product['name']?>">
+                            <input type="hidden" name="product_price" value="<?=$finalPrice?>">
+                            <input type="hidden" name="product_image" value="<?=$images[0]?>?>">
+                            <input type="number" name="quantity" value="1" min="1" class="form-control w-25" id="quantity">
+                            <div class="d-flex gap-2 mt-3">
+                                <button class="btn btn-dark fs-6 fw-bold pe-5 ps-5 pt-3 pb-3" name="addToCart" type="submit" id="add-to-cart-btn">Thêm vào giỏ hàng</button>
+                                <button class="btn btn-danger fs-6 fw-bold pe-5 ps-5 pt-3 pb-3" type="button" onclick="window.location.href='/php2/ASM/checkout'">Mua ngay</button>
+                            </div>
+                        </form>
                     </div>
                     <div class="card mt-3">
                         <div class="card-body">

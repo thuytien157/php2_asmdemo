@@ -8,7 +8,13 @@ class CartController extends BaseController {
 
     public function index() {
         $cart = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
-        $this->render('cart', ['cart' => $cart]);
+        if(isset($_SESSION['user'])){
+            $this->render('cart', ['cart' => $cart]);
+        }else{
+            $_SESSION['error'] = "Bạn cần phải đăng nhập";
+            header('location: /php2/ASMC');
+            exit;
+        }
     }
 
     public function addToCart() {
@@ -31,6 +37,7 @@ class CartController extends BaseController {
                     $found = true;
                     break;
                 }
+                $finalQ += $quantity;
             }
 
             if (!$found) {

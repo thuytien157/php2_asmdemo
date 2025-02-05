@@ -42,13 +42,30 @@
             <div class="row g-2" id="sanpham_slice">
                 <?php foreach (array_slice($listpro, 0, 4) as $product): ?>
                     <div class="col-12 col-sm-6 col-md-6">
-                        <a href="product/detail/<?=$product['id']?>" class="card text-decoration-none">
+                        <a href="/php2/ASMC/product/detail/<?=$product['id']?>" class="card text-decoration-none">
                             <?php if (!empty($product['discount'])): ?>
                                 <div class="position-absolute top-0 start-0 badge text-bg-danger m-2"><?=$product['discount']?>%</div>
                             <?php endif; ?>
                             <img src="public/img/products/<?=$product['image']?>" class="card-img-top small-img img-fluid" alt="...">
                             <div class="card-body bg-body">
-                                <div class="position-absolute top-0 end-0 m-2 giohang"><i class="fa fa-shopping-bag fs-4 gh m-2"></i></div>
+                             
+                            <?php
+                                $finalPrice = !empty($product['discount']) 
+                                ? round($product['price'] - ($product['price'] * ($product['discount'] / 100)), -3) 
+                                : round($product['price'], -3);
+                            ?>
+                            <form action="/php2/ASMC/addToCart" method="POST" id="add-to-cart-form">
+                                <input type="hidden" name="id" value="<?=$product['id']?>">
+                                <input type="hidden" name="product_name" value="<?=$product['name']?>">
+                                <input type="hidden" name="product_price" value="<?=$finalPrice?>">
+                                <input type="hidden" name="product_image" value="<?=$product['image']?>">
+                                <input type="hidden" name="quantity" value="1" min="1" class="form-control w-25" id="quantity">
+                                <button class="position-absolute top-0 end-0 m-2 border boder-0 giohang" name="addToCart" type="submit" id="add-to-cart-btn">
+                                    <i class="fa fa-shopping-bag fs-4 gh m-2"></i>
+                                </button>
+                            </form>
+
+
                                 <p class="card-text fw-bolder"><?=$product['name']?></p>
                                 <p class="card-text fw-bold text-danger fs-5">
                                 <?php if (!empty($product['discount'])): ?>    
@@ -62,6 +79,8 @@
                         </a>
                     </div>
                     
+                        
+
                 <?php endforeach; ?>
             </div>
 
@@ -86,8 +105,24 @@
             <?php endif; ?>
             <img src="public/img/products/<?=$product['image']?>" class="card-img-top small-img img-fluid" alt="...">
             <div class="card-body bg-body">
-                <div class="position-absolute top-0 end-0 m-2 giohang"><i class="fa fa-shopping-bag fs-4 gh m-2"></i></div>
-                <p class="card-text fw-bolder"><?=$product['name']?></p>
+
+            <?php
+                $finalPrice = !empty($product['discount']) 
+                ? round($product['price'] - ($product['price'] * ($product['discount'] / 100)), -3) 
+                : round($product['price'], -3);
+            ?>
+            <form action="/php2/ASMC/addToCart" method="POST" id="add-to-cart-form">
+                <input type="hidden" name="id" value="<?=$product['id']?>">
+                <input type="hidden" name="product_name" value="<?=$product['name']?>">
+                <input type="hidden" name="product_price" value="<?=$finalPrice?>">
+                <input type="hidden" name="product_image" value="<?=$product['image']?>">
+                <input type="hidden" name="quantity" value="1" min="1" class="form-control w-25" id="quantity">
+                <button class="position-absolute top-0 end-0 m-2 border boder-0 giohang" name="addToCart" type="submit" id="add-to-cart-btn">
+                    <i class="fa fa-shopping-bag fs-4 gh m-2"></i>
+                </button>
+            </form>
+            
+            <p class="card-text fw-bolder"><?=$product['name']?></p>
                 <p class="card-text fw-bold text-danger fs-5">
                 <?php if (!empty($product['discount'])): ?>    
                 <?=number_format($product['price'] - ($product['price']*($product['discount']/100)),0,'.','.')?>đ 
@@ -115,13 +150,27 @@
                 <div class="row g-2" id="sanpham_slice2">
                 <?php foreach (array_slice($listpro, 0, 4) as $product):?>
                 <div class="col-12 col-sm-6 col-md-6">
-                <a href="product/detail/<?=$product['id']?>" class="card text-decoration-none">
+                <a href="/php2/ASMC/product/detail/<?=$product['id']?>" class="card text-decoration-none">
                     <?php if (!empty($product['discount'])): ?>
                     <div class="position-absolute top-0 start-0 badge text-bg-danger m-2"><?=$product['discount']?>%</div>
                     <?php endif; ?>
                     <img src="public/img/products/<?=$product['image']?>" class="card-img-top small-img img-fluid" alt="...">
                     <div class="card-body bg-body">
-                        <div class="position-absolute top-0 end-0 m-2 giohang"><i class="fa fa-shopping-bag fs-4 gh m-2"></i></div>
+                    <?php
+                        $finalPrice = !empty($product['discount']) 
+                        ? round($product['price'] - ($product['price'] * ($product['discount'] / 100)), -3) 
+                        : round($product['price'], -3);
+                    ?>
+                    <form action="/php2/ASMC/addToCart" method="POST" id="add-to-cart-form">
+                        <input type="hidden" name="id" value="<?=$product['id']?>">
+                        <input type="hidden" name="product_name" value="<?=$product['name']?>">
+                        <input type="hidden" name="product_price" value="<?=$finalPrice?>">
+                        <input type="hidden" name="product_image" value="<?=$product['image']?>">
+                        <input type="hidden" name="quantity" value="1" min="1" class="form-control w-25" id="quantity">
+                        <button class="position-absolute top-0 end-0 m-2 border boder-0 giohang" name="addToCart" type="submit" id="add-to-cart-btn">
+                            <i class="fa fa-shopping-bag fs-4 gh m-2"></i>
+                        </button>
+                    </form>
                         <p class="card-text fw-bolder"><?=$product['name']?></p>
                         <p class="card-text fw-bold text-danger fs-5">
                         <?php if (!empty($product['discount'])): ?>    

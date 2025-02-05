@@ -10,6 +10,20 @@ class UserController extends BaseController{
         $this->user = new UserModel();
     }
 
+    public function index(){
+        if(isset($_SESSION['user'])){
+            $username = $_SESSION['user']['username'];
+            $infouser = $this->user->selectUser($username);
+            $this->render('account', ['infouser' => $infouser]);
+            //var_dump($infouser);
+
+        }else{
+            $_SESSION['error'] = "Bạn cần phải đăng nhập";
+            header('location: /php2/ASMC');
+            exit;
+        }
+    }
+
     public function register(){
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])){
             $username = $_POST['username'] ?? '';
@@ -36,7 +50,7 @@ class UserController extends BaseController{
         }else{
             $_SESSION['error'] = "Đăng ký không thành công";
         }
-        header('location: /php2/ASM');
+        header('location: /php2/ASMC');
         exit;
         
     }
@@ -57,22 +71,43 @@ class UserController extends BaseController{
                 $_SESSION['user']=[
                     'username' => $infouser['username'],
                     'id' => $infouser['id'],
-                    'password' => $infouser['password']
+                    'password' => $infouser['password'],
+                    'email' => $infouser['email']
                 ];
             }else{
                 $_SESSION['error'] = "Mật khẩu sai";
             }
         }
 
-        header('location: /php2/ASM');
+        header('location: /php2/ASMC');
         exit;
         //var_dump($infouser);
     }
 
     public function logout(){
         unset($_SESSION['user']);
-        header('location: /php2/ASM');
+        header('location: /php2/ASMC');
         exit;
+    }
+
+    public function updateAccount(){
+        if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['edituser'])){
+            $fullname = $_POST['hoten'] ?? '';
+            $phone = $_POST['sdt'] ?? '';
+            $email = $_POST['email'] ?? '';
+            $address = $_POST['address'] ?? '';
+            $user_id = $_SESSION['user']['id'] ?? '';
+            
+            $updateSuccess = $this->user->updateUser($fullname, $phone, $email, $address, $user_id);
+            if($updateSuccess){
+                $_SESSION['success'] = "Thành công";
+            }else{
+                $_SESSION['error'] = "Thất bại";
+            }
+            
+            header('location: /php2/ASMC/account');
+            exit;
+        }
     }
 }
 

@@ -5,19 +5,6 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);  
 error_reporting(E_ALL);
 
-// var_dump($_SESSION['user']);
-// unset($_SESSION['user']);
-if(isset($_SESSION['error'])){
-    echo '<div class="alert alert-danger" role="alert">
-            '.$_SESSION['error'].'
-        </div>';
-    unset($_SESSION['error']);
-}elseif(isset($_SESSION['success'])){
-    echo '<div class="alert alert-success" role="alert">
-            '.$_SESSION['success'].'
-        </div>';
-unset($_SESSION['success']);
-}
 
 include "router.php";
 
@@ -35,6 +22,8 @@ $route->add("/user/register", ["controller" => "user", "action" => "register"]);
 $route->add("/user/login", ["controller" => "user", "action" => "login"]);
 $route->add("/user/logout", ["controller" => "user", "action" => "logout"]);
 $route->add("/product/category/{categoryid}", ["controller" => "product", "action" => "index"]);
+$route->add("/account", ["controller" => "user", "action" => "index"]);
+$route->add("/account/update", ["controller" => "user", "action" => "updateAccount"]);
 
 
 
@@ -59,4 +48,6 @@ spl_autoload_register(function ($className) {
 
 $ctrl = new $ctrlName();
 $ctrl->$action(...$params);
+// var_dump($_SESSION['user']['id']);
+// unset($_SESSION['user']);
 ?>

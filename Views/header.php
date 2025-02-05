@@ -24,14 +24,14 @@
           <ul class="navbar-nav">
           <?php foreach ($ParentsC as $category): ?>
               <li class="nav-item dropdown">
-                  <a href="product/category/<?= $category['id']?>" class="nav-link me-2 fw-semibold">
+                  <a href="/php2/ASMC/product/category/<?= $category['id']?>" class="nav-link me-2 fw-semibold">
                       <?= $category['name'] ?>
                           </a>
                     <?php if (isset($ChildrenC[$category['id']]) && !empty($ChildrenC[$category['id']])): ?>
                         <ul class="dropdown-menu" aria-labelledby="navbarDropdown<?= $category['id'] ?>">
                             <?php foreach ($ChildrenC[$category['id']] as $child): ?>
                                 <li>
-                                    <a class="dropdown-item" href="product/category/<?= $child['id'] ?>">
+                                    <a class="dropdown-item" href="/php2/ASMC/product/category/<?= $child['id'] ?>">
                                         <?= $child['name'] ?>
                                     </a>
                                 </li>
@@ -59,9 +59,9 @@
       </div>
       <div class="d-flex justify-content-end gap-3 fs-5 ">
         <a class="text-dark text-decoration-none fa fa-search"></a>
-        <a href="giohang.html" class="text-dark text-decoration-none fa fa-shopping-bag"></a>
+        <a href="cart" class="text-dark text-decoration-none fa fa-shopping-bag"></a>
         <a class="text-dark text-decoration-none fa fa-heart"></a>
-        <a  href="admin.html" class="text-dark text-decoration-none fa fa-lock"></a>    
+        <a  href="#" class="text-dark text-decoration-none fa fa-lock"></a>    
       </div>
       <?php if(isset($_SESSION['user'])): ?>
         <div class="dropdown ps-2">
@@ -69,7 +69,7 @@
                 <?php echo $_SESSION['user']['username']; ?> 
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li class="dropdown-item fs-6">Tài khoản</li>
+                <li><a class="dropdown-item fs-6" href="account">Tài khoản</a></li>
                 <li><a class="dropdown-item fs-6" href="user/logout">Đăng xuất</a></li>
             </ul>
         </div>

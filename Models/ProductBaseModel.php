@@ -43,7 +43,7 @@ trait ProductBaseModel{
                 INNER JOIN categories ca 
                 ON ca.id = p.id_category 
                 INNER JOIN image_detail i
-                ON P.id = i.id_product
+                ON p.id = i.id_product
                 WHERE (ca.id = :categoryid OR ca.id_parent = :categoryid)
                 AND i.is_main = 1;";
         return $sql;

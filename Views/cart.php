@@ -27,13 +27,13 @@
                 </div>
             </div>
             <div class="text-center">
-                <p class="fw-bold"><?=$item['price']?><sup class="fw-bold">đ</sup></p>
+                <p class="fw-bold"><?=number_format($item['price'],0,'.','.')?><sup class="fw-bold">đ</sup></p>
                 <div class="input-group input-group-sm">
                     <button class="btn btn-outline-secondary btn-decrease" type="button" data-id="<?= $item['id'] ?>">-</button>
                     <input type="number" id="quantity-<?= $item['id'] ?>" class="form-control text-center quantity-input" value="<?= $item['quantity'] ?>" min="1" readonly>
                     <button class="btn btn-outline-secondary btn-increase" type="button" data-id="<?= $item['id'] ?>">+</button>
                 </div>
-                <a class="btn btn-danger btn-sm mt-2" href="php2/ASMC/cartRemove/<?=$item['id']?>">Xoá</a>
+                <a class="btn btn-danger btn-sm mt-2" href="/php2/ASMC/cartRemove/<?=$item['id']?>">Xoá</a>
             </div>
         </div> 
     <?php endforeach?>
@@ -42,26 +42,73 @@
       </div>
 
       <!-- Thanh toán -->
-      <div class="col-12 col-lg-4 mt-4 mt-lg-0">
+      <?php
+        $totalPrice = 0;
+        $totalQuantity = 0;
+        foreach ($_SESSION['cart'] as $item) {
+            $totalPrice += $item['price'] * $item['quantity'];
+            $totalQuantity += $item['quantity'];
+        }              
+      ?>
+      <div class="col-12 col-lg-4 mt-5 mt-lg-0">
         <div class="card">
           <div class="card-body" id="tomtat">
             <h5 class="card-title fw-bold">Tóm tắt đơn hàng</h5>
             <div class="d-flex justify-content-between">
               <p>Tổng sản phẩm:</p>
-              <p>3</p>
+              <p><?=$totalQuantity?></p>
             </div>
             <div class="d-flex justify-content-between">
               <p>Tổng tiền:</p>
-              <p class="fw-bold">10,480,000 VND</p>
+              <p class="fw-bold"><?=number_format($totalPrice, 0, '.', '.')?> VND</p>
             </div>
-            <div>
-              <h6>Thông tin thanh toán</h6>
-              <input type="text" class="mb-2" placeholder="Nhập tên của bạn">
-              <input type="text" placeholder="Nhập địa chỉ của bạn">
-              <input type="email" placeholder="Nhập email chỉ của bạn">
-              <input type="phone" placeholder="Nhập email chỉ của bạn">
+            <button data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-dark w-100 mt-3">Tiến hành thanh toán</button>
+
+            <!-- modal -->
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content ttnh">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Thông tin nhận hàng</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                  <form action="" method="post">
+                      <div class="mb-3">
+                          <label for="ho_ten" class="form-label fw-bold">Họ và tên <sup><i class="fa fa-asterisk text-danger"></i></sup></label>
+                          <input type="text" class="form-control" id="ho_ten" name="ho_ten" required value="">
+                      </div>
+                      <div class="mb-3">
+                          <label for="dia_chi" class="form-label fw-bold">Địa chỉ <sup><i class="fa fa-asterisk text-danger"></i></sup></label>
+                          <input type="text" class="form-control" id="dia_chi" name="dia_chi" required>
+                      </div>
+                      <div class="mb-3">
+                          <label for="sdt" class="form-label fw-bold">Số điện thoại <sup><i class="fa fa-asterisk text-danger"></i></sup></label>
+                          <input type="text" class="form-control" id="sdt" name="sdt" required value="">
+                      </div>
+                      <div class="mb-3">
+                          <label for="ghi_chu" class="form-label fw-bold">Ghi chú</label>
+                          <textarea class="form-control" id="ghi_chu" rows="2" name="ghi_chu"></textarea>
+                      </div>
+                      <div class="mb-3">
+                          <label for="pt_thanhtoan" class="form-label fw-bold">Phương thức thanh toán</label>
+                          <select name="pt_thanhtoan" class="form-select">
+                              <option value="Chuyển khoản ngân hàng">Chuyển khoản ngân hàng</option>
+                              <option value="Thanh toán tiền mặt">Thanh toán tiền mặt</option>
+                              <option value="Thanh toán Momo">Thanh toán Momo</option>
+                              <option value="Thanh toán VNPAY">Thanh toán VNPAY</option>
+                          </select>
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+                    <button type="button" class="btn btn-dark">Xác nhận</button>
+                  </div>
+                </div>
+              </div>
             </div>
-            <button class="btn btn-dark w-100 mt-3">Tiến hành thanh toán</button> 
+
           </div>
         </div>
       </div>
