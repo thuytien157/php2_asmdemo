@@ -46,8 +46,9 @@ class ProductController extends BaseController {
 
     public function search() {
         $key = $_POST['key'];
+        // print_r($_POST);
+        // return;
         $listpro = $this->product->searchProducts($key);
-
         $this->render('product', ['listpro' => $listpro]); 
     }
     

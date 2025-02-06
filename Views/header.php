@@ -41,7 +41,6 @@
                 </li>
             <?php endforeach; ?>
         </ul>
-
           <li class="nav-item">
             <a href="baiviet.html" class="nav-link me-2 fw-semibold">Bài viết</a>
           </li>
@@ -61,7 +60,7 @@
         <form action="/php2/ASMC/product/search" method="post">
         <div class="search-container">
 
-          <input type="search" name="search" class="search" name="key" id="search" placeholder="Tìm kiếm">
+          <input type="search" class="search" name="key" id="search" placeholder="Tìm kiếm">
           <i class="fa fa-search search-icon"></i>
           </div>
         </form>
@@ -76,7 +75,7 @@
                 <?php echo $_SESSION['user']['username']; ?> 
             </button>
             <ul class="dropdown-menu dropdown-menu-dark">
-                <li><a class="dropdown-item fs-6" href="account">Tài khoản</a></li>
+                <li><a class="dropdown-item fs-6" href="/php2/ASMC/account">Tài khoản</a></li>
                 <li><a class="dropdown-item fs-6" href="user/logout">Đăng xuất</a></li>
             </ul>
         </div>

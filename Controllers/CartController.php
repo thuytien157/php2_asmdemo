@@ -25,7 +25,6 @@ class CartController extends BaseController {
             $quantity = $_POST['quantity'];
             $image = $_POST['product_image'];
 
-            // Kiểm tra nếu giỏ hàng chưa được tạo
             if (!isset($_SESSION['cart'])) {
                 $_SESSION['cart'] = [];
             }
@@ -39,6 +38,7 @@ class CartController extends BaseController {
                 }
             }
 
+            //check == false sp chưa được thêm vào giỏ hàng 
             if (!$check) {
                 $_SESSION['cart'][] = [
                     'id' => $product_id,
@@ -67,10 +67,6 @@ class CartController extends BaseController {
     }
 
     public function increase($product_id) {
-        if (!isset($_SESSION['cart'])) {
-            $_SESSION['cart'] = [];
-        }
-    
         $check = false;
         foreach ($_SESSION['cart'] as &$item) {
             if ($item['id'] == $product_id) {
