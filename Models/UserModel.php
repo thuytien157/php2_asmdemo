@@ -14,7 +14,7 @@ class UserModel{
             ];
             $results = $this->db->insert($sql, $params);    
             return $results;   
-        } catch (PDOException $th) {
+        } catch (Exception $th) {
             $_SESSION['error'] = "Lỗi SQL: " . $th->getMessage();
             return false;
         }
@@ -37,9 +37,9 @@ class UserModel{
             ];
             $results = $this->db->update($sql, $params);
             return $results;
-        } catch (PDOException $th) {
+        } catch (Exception $th) {
             $_SESSION['error'] = "Lỗi SQL: " . $th->getMessage();
-            echo "Lỗi SQL: " . $th->getMessage();  // In ra thông báo lỗi SQL
+            echo "Lỗi SQL: " . $th->getMessage(); 
             return false;
         }
     }

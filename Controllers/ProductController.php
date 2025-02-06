@@ -43,6 +43,14 @@ class ProductController extends BaseController {
         // echo "<pre>";
 
     }
+
+    public function search() {
+        $key = $_POST['key'];
+        $listpro = $this->product->searchProducts($key);
+
+        $this->render('product', ['listpro' => $listpro]); 
+    }
+    
     
 }
 ?>

@@ -5,10 +5,10 @@
             <a href="#" class="list-group-item list-group-item-dark active">
                 Thông tin tài khoản
             </a>
-            <a href="" class="list-group-item list-group-item-action">
+            <a href="order/infor" class="list-group-item list-group-item-action">
                 Lịch sử mua hàng
             </a>
-            <a href="#" class="list-group-item list-group-item-action">
+            <a href="" class="list-group-item list-group-item-action">
                 Yêu thích
             </a>
             <a href="#" class="list-group-item list-group-item-action">

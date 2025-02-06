@@ -24,7 +24,7 @@ class UserController extends BaseController{
         }
     }
 
-    public function register(){
+    function register(){
         if($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['register'])){
             $username = $_POST['username'] ?? '';
             $email = $_POST['email'] ?? '';
@@ -72,7 +72,10 @@ class UserController extends BaseController{
                     'username' => $infouser['username'],
                     'id' => $infouser['id'],
                     'password' => $infouser['password'],
-                    'email' => $infouser['email']
+                    'email' => $infouser['email'],
+                    'fullname' => $infouser['fullname'],
+                    'address' => $infouser['address'],
+                    'phone' => $infouser['phone']
                 ];
             }else{
                 $_SESSION['error'] = "Mật khẩu sai";
@@ -100,6 +103,11 @@ class UserController extends BaseController{
             
             $updateSuccess = $this->user->updateUser($fullname, $phone, $email, $address, $user_id);
             if($updateSuccess){
+                $_SESSION['user']['fullname'] = $fullname;
+                $_SESSION['user']['phone'] = $phone;
+                $_SESSION['user']['email'] = $email;
+                $_SESSION['user']['address'] = $address;
+
                 $_SESSION['success'] = "Thành công";
             }else{
                 $_SESSION['error'] = "Thất bại";

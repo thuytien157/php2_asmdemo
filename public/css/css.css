@@ -135,6 +135,39 @@
 .text-decoration-none {
     text-decoration: none;
 }
+.search-container {
+  position: relative; 
+  width: 300px; 
+  margin-right: 20px;
+
+}
+
+.search {
+  width: 100%; 
+  padding: 8px 40px 8px 12px; 
+  font-size: 14px;
+  border: 1px solid #ccc; 
+  outline: none; 
+  transition: all 0.3s ease; 
+}
+
+.search:focus {
+  border-color: #24aeb1; 
+  box-shadow: 0 0 8px rgba(36, 174, 177, 0.4);
+}
+
+.search-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px; 
+  transform: translateY(-50%); /* Căn giữa icon theo chiều dọc */
+  font-size: 18px;
+  color: #888; 
+}
+
+.search:focus + .search-icon {
+  color: #24aeb1; /* Đổi màu icon khi ô input được focus */
+}
 
 .btn-link {
     text-decoration: none;

@@ -5,7 +5,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);  
 error_reporting(E_ALL);
 
-
+$_SESSION['cart'] = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
 include "router.php";
 
 $route = new Router();
@@ -24,6 +24,11 @@ $route->add("/user/logout", ["controller" => "user", "action" => "logout"]);
 $route->add("/product/category/{categoryid}", ["controller" => "product", "action" => "index"]);
 $route->add("/account", ["controller" => "user", "action" => "index"]);
 $route->add("/account/update", ["controller" => "user", "action" => "updateAccount"]);
+$route->add("/order", ["controller" => "order", "action" => "orders"]);
+$route->add("/order/infor", ["controller" => "order", "action" => "InforOrder"]);
+$route->add("/order/infor/editAddress", ["controller" => "order", "action" => "updateAddress"]);
+$route->add("/order/infor/cancel/{id}", ["controller" => "order", "action" => "cancelOrder"]);
+$route->add("/product/search", ["controller" => "product", "action" => "search"]);
 
 
 
@@ -50,4 +55,6 @@ $ctrl = new $ctrlName();
 $ctrl->$action(...$params);
 // var_dump($_SESSION['user']['id']);
 // unset($_SESSION['user']);
+//var_dump($_SESSION['cart']);
+
 ?>

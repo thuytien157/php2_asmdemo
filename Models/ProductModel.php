@@ -24,5 +24,9 @@ class ProductModel {
         return $this->getProductByCategory($categoryid);
     }
 
+    public function searchProducts($key) {
+        return $this->searchProduct($key);
+    }
+
 }
 ?>

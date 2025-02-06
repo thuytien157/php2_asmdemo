@@ -54,6 +54,21 @@ trait ProductBaseModel{
         $sql = $this->getProductByCategoryQuery(); 
         return $this->db->getALL($sql, ['categoryid' => $categoryid]); 
     }
+
+    public function searchProductQuery($key) {
+        $sql = "SELECT p.id, p.name, p.description, p.price, p.discount, i.image
+                FROM product p
+                inner join image_detail i on p.id = i.id_product
+                WHERE name LIKE :key AND is_main = 1";
+        return $sql;
+    }
+    
+    public function searchProduct($key) {
+        $sql = $this->searchProductQuery($key);
+        return $this->db->getAll($sql, ['key' => '%' . $key . '%']);
+    }
     
 }
+    
+    
 ?>

@@ -30,17 +30,16 @@ class CartController extends BaseController {
                 $_SESSION['cart'] = [];
             }
 
-            $found = false;
+            $check = false;
             foreach ($_SESSION['cart'] as &$item) { 
                 if ($item['id'] === $product_id) {
                     $item['quantity'] += $quantity;  
-                    $found = true;
+                    $check = true;
                     break;
                 }
-                $finalQ += $quantity;
             }
 
-            if (!$found) {
+            if (!$check) {
                 $_SESSION['cart'][] = [
                     'id' => $product_id,
                     'name' => $product_name,
@@ -51,7 +50,7 @@ class CartController extends BaseController {
             }
 
             header('Location: /php2/ASMC/cart');
-            exit;
+            exit;            
         }
     }
 
@@ -72,16 +71,16 @@ class CartController extends BaseController {
             $_SESSION['cart'] = [];
         }
     
-        $found = false;
+        $check = false;
         foreach ($_SESSION['cart'] as &$item) {
             if ($item['id'] == $product_id) {
                 $item['quantity']++;
-                $found = true;
+                $check = true;
                 break;
             }
         }
     
-        if (!$found) {
+        if (!$check) {
             $_SESSION['cart'][] = [
                 'id' => $product_id,
                 'quantity' => 1, 

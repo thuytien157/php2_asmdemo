@@ -1,4 +1,4 @@
-<div class="container-xxl">
+<div class="container-xxl mt-3">
         <div class="link d-flex justify-content-between">
             <div class="dieuhuong mt-3">
                 <a class="icon-link text-dark text-decoration-none" href="#">
@@ -9,11 +9,14 @@
                 </a>
             </div>
             <select class="form-select w-25 mt-2" id="dsdm" aria-label="Default select example">
-                <option selected>Chọn danh mục</option> 
-                <option value="1">Quần áo</option>
-                <option value="2">Mũ nón</option>
+                <option disabled selected >Chọn danh mục</option> 
+                <option value="">Tất cả sản phẩm</option> 
+                <?php foreach($ParentsC as $category): ?>
+                <option value="<?=$category['id']?>"><?=$category['name']?></option>
+                <!-- <option value="2">Mũ nón</option>
                 <option value="3">Giày dép</option>
-                <option value="4">Túi ví</option> 
+                <option value="4">Túi ví</option>  -->
+                <?php endforeach; ?>
             </select>
         </div>
 
@@ -117,3 +120,15 @@
             </div>
     </div>
 
+<script>
+document.getElementById('dsdm').addEventListener('change', function () {
+    var categoryId = this.value;
+    if (categoryId) {
+        window.location.href = '/php2/ASMC/product/category/' + categoryId;
+    } else {
+        window.location.href = '/php2/ASMC/product';
+    }
+});
+
+
+</script>

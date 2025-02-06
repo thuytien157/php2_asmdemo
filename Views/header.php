@@ -7,7 +7,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/php2/ASM/public/css/css.css">
+    <link rel="stylesheet" href="/php2/ASMC/public/css/css.css">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg bg-body-tertiary menu-1">
@@ -19,7 +19,7 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a href="home" class="nav-link me-2 fw-semibold">Trang chủ</a>
+            <a href="/php2/ASMC/home" class="nav-link me-2 fw-semibold">Trang chủ</a>
           </li>
           <ul class="navbar-nav">
           <?php foreach ($ParentsC as $category): ?>
@@ -57,11 +57,18 @@
           <?php endif; ?>
         </ul>
       </div>
-      <div class="d-flex justify-content-end gap-3 fs-5 ">
-        <a class="text-dark text-decoration-none fa fa-search"></a>
-        <a href="cart" class="text-dark text-decoration-none fa fa-shopping-bag"></a>
-        <a class="text-dark text-decoration-none fa fa-heart"></a>
-        <a  href="#" class="text-dark text-decoration-none fa fa-lock"></a>    
+      <div class="d-flex justify-content-end gap-3 fs-5">
+        <form action="/php2/ASMC/product/search" method="post">
+        <div class="search-container">
+
+          <input type="search" name="search" class="search" name="key" id="search" placeholder="Tìm kiếm">
+          <i class="fa fa-search search-icon"></i>
+          </div>
+        </form>
+        <!-- <a class="text-dark text-decoration-none fa fa-search"></a> -->
+        <a href="cart" class="text-dark text-decoration-none fa fa-shopping-bag mt-2"></a>
+        <a class="text-dark text-decoration-none fa fa-heart mt-2"></a>
+        <a  href="#" class="text-dark text-decoration-none fa fa-lock mt-2"></a>    
       </div>
       <?php if(isset($_SESSION['user'])): ?>
         <div class="dropdown ps-2">

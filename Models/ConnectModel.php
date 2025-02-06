@@ -26,6 +26,20 @@ trait ConnectModel {
     public function delete($sql, $param = []) {
         return $this->db->delete($sql, $param); 
     }
+
+    public function beginTransaction() {
+        return $this->db->beginTransaction(); 
+    }
+
+    public function commit() {
+        return $this->db->commit(); 
+    }
+
+    public function rollBack() {
+        return $this->db->rollBack(); 
+    }
+
+
 }
 
 

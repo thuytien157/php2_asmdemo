@@ -73,18 +73,18 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                   </div>
                   <div class="modal-body">
-                  <form action="" method="post">
+                  <form action="order" method="post">
                       <div class="mb-3">
                           <label for="ho_ten" class="form-label fw-bold">Họ và tên <sup><i class="fa fa-asterisk text-danger"></i></sup></label>
-                          <input type="text" class="form-control" id="ho_ten" name="ho_ten" required value="">
+                          <input type="text" class="form-control" id="ho_ten" name="ho_ten" required value="<?=$_SESSION['user']['fullname'] ?? ''?>">
                       </div>
                       <div class="mb-3">
                           <label for="dia_chi" class="form-label fw-bold">Địa chỉ <sup><i class="fa fa-asterisk text-danger"></i></sup></label>
-                          <input type="text" class="form-control" id="dia_chi" name="dia_chi" required>
+                          <input type="text" class="form-control" id="dia_chi" name="dia_chi" required value="<?=$_SESSION['user']['address'] ?? ''?>">
                       </div>
                       <div class="mb-3">
                           <label for="sdt" class="form-label fw-bold">Số điện thoại <sup><i class="fa fa-asterisk text-danger"></i></sup></label>
-                          <input type="text" class="form-control" id="sdt" name="sdt" required value="">
+                          <input type="text" class="form-control" id="sdt" name="sdt" required value="<?=$_SESSION['user']['phone'] ?? ''?>">
                       </div>
                       <div class="mb-3">
                           <label for="ghi_chu" class="form-label fw-bold">Ghi chú</label>
@@ -99,12 +99,13 @@
                               <option value="Thanh toán VNPAY">Thanh toán VNPAY</option>
                           </select>
                       </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+                        <button type="submit" class="btn btn-dark" name="order">Xác nhận</button>
+                      </div>
                     </form>
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
-                    <button type="button" class="btn btn-dark">Xác nhận</button>
-                  </div>
+                  
                 </div>
               </div>
             </div>
@@ -116,13 +117,13 @@
   </div>
 
   <div class="text-center p-5 pb-2 bg-body-secondary">
-          <div class="card-body"> 
-              <h2 class="card-title fw-bold mb-2">ĐĂNG KÝ BẢN TIN CỦA CHÚNG TÔI</h2>
-              <p class="card-text">Hãy cập nhật các tin tức thời trang về sản phẩm, BST sắp ra mắt, chương trình khuyến mãi đặc biệt và xu hướng thời trang mới nhất hàng tuần của chúng tôi.</p>
-              <div class="input-group mb-3 ip_emmail border border-black rounded">
-                  <input type="text" class="form-control" placeholder="Nhập email đăng ký nhận tin" aria-label="Recipient's username" aria-describedby="button-addon2">
-                  <button class="btn btn-dark text-light fw-bold" type="button" id="button-addon2">ĐĂNG KÝ</button>
-              </div>
-          </div>
-      </div>
+    <div class="card-body"> 
+        <h2 class="card-title fw-bold mb-2">ĐĂNG KÝ BẢN TIN CỦA CHÚNG TÔI</h2>
+        <p class="card-text">Hãy cập nhật các tin tức thời trang về sản phẩm, BST sắp ra mắt, chương trình khuyến mãi đặc biệt và xu hướng thời trang mới nhất hàng tuần của chúng tôi.</p>
+        <div class="input-group mb-3 ip_emmail border border-black rounded">
+            <input type="text" class="form-control" placeholder="Nhập email đăng ký nhận tin" aria-label="Recipient's username" aria-describedby="button-addon2">
+            <button class="btn btn-dark text-light fw-bold" type="button" id="button-addon2">ĐĂNG KÝ</button>
+        </div>
+    </div>
+  </div>
       <script src="/php2/ASMC/public/js/updateQuantity.js"></script>
